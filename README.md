@@ -1,9 +1,9 @@
 # BLE_Logger
 An Offline BLE Beacon Proximity Logger
 
-Project developed to detect and log whether a wearable BLE beacon comes within range, for the purposes of research. 
+Project developed to detect and log whether a wearable BLE beacon comes within range, for the purposes of research. Emphasis is on reliability, versatility, and being able to use inexpensive components. 
 
-Yes - I know - it would be much easier to use WiFi/LoRa/ESP-NOW and MQTT, but this application is intended for situations where you have mains power but no wireless options. 
+Yes - I know - it would be much easier to use WiFi/LoRa/ESP-NOW and MQTT, but this application is intended for situations where you have mains power but no wireless options (beyond Bluetooth, of course).
 
 ## Install ESP32 for Arduino
 There's a <a href="https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/" target="_blank">good tutorial</a> to do this by randomnerdtutorials. If you follow my BOM, you will want to select the model "DOIT ESP32 DEVKIT V1".
@@ -40,6 +40,9 @@ There's a <a href="https://randomnerdtutorials.com/installing-the-esp32-board-in
 | D19 | MISO |
 
 LED is setup for Pin 16.
+
+## Determining the MAC Addresses of your BLE Devices/Beacons
+In the Arduino IDE, go to the scan sketch by: File -> Examples -> (Header) Examples for DOIT ESP32 DEVKIT V1 -> ESP 32 BLE Arduino -> BLE_scan . Compile and upload this sketch, and confirm that you are seeing successful scans in the serial screen. Now, go through your BLE devices, one at a time, and power them on, copy the MAC value, and save it somewhere. Shut that device off, and move onto the next one. You can enter these values in the sketch.
 
 ## Todo
 1. The log file should be dynamic by default, preferably using the unique ssid_retrieve() value.
