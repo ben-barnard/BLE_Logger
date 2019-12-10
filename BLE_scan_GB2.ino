@@ -2,9 +2,10 @@
    Based on Neil Kolban example for IDF: https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/tests/BLE%20Tests/SampleScan.cpp
    Ported to Arduino ESP32 by Evandro Copercini
 */
-
 int ledPin = 16;
 
+//Based on the explanation by user Majenko here:
+//https://arduino.stackexchange.com/questions/58677/get-esp32-chip-id-into-a-string-variable-arduino-c-newbie-here
 char* ssid_retrieve(){
   uint64_t chipid = ESP.getEfuseMac(); // The chip ID is essentially its MAC address(length: 6 bytes).
   uint16_t chip = (uint16_t)(chipid >> 32);
@@ -13,6 +14,8 @@ char* ssid_retrieve(){
   return ssid;
   }
 
+//Used the example from here:
+//http://acoptex.com/project/1285/basics-project-072y-esp32-development-board-with-sd-card-module-at-acoptexcom/
 //**********************************************
 #include <mySD.h>//include library code
 //**********************************************
@@ -62,12 +65,23 @@ BLEScan* pBLEScan;
 
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
     void onResult(BLEAdvertisedDevice advertisedDevice) {
+      //Serial.printf("Advertised Device: %s \n", advertisedDevice.getAddress().toString().c_str());
       if(mac_Check(advertisedDevice.getAddress().toString().c_str())) //this matches our list of addresses, let's log it
       {
+      //if (!SD.begin(CS, MOSI, MISO, SCK)) {
+      //        Serial.println("initialization failed!");
+      //        while(1);
+      //        }
       SD.begin(CS, MOSI, MISO, SCK);
+      //root = SD.open("/");
       root = SD.open("logging.csv", FILE_WRITE);
+      //strcat(ssid_retrieve(),".csv")
+      //char filename = strcat(ssid_retrieve(),".csv")
+      //if (!SD.exists(filename)){}
+      //root = SD.open(filename), FILE_WRITE);
       Serial.print(advertisedDevice.getAddress().toString().c_str());
       Serial.println(" matches our list of addresses, logging it");
+      //Serial.println(ssid_retrieve());
       root.print(ssid_retrieve());
       root.print(", ");
       root.print(advertisedDevice.getAddress().toString().c_str());
@@ -75,6 +89,8 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
       root.print(advertisedDevice.getRSSI());
       root.print(", "); 
       DateTime now = RTC.now();
+      //root.print(now.year(), DEC);
+      //root.print('/');
       root.print(now.month(), DEC);
       root.print('/');
       root.print(now.day(), DEC);
@@ -108,6 +124,7 @@ void setup() {
   Wire.begin();
   Serial.begin(115200);
   Serial.println("Scanning...");
+  //Serial.println(strcat(ssid_retrieve(),".csv");
   BLEDevice::init("");
   pBLEScan = BLEDevice::getScan(); //create new scan
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
@@ -115,6 +132,9 @@ void setup() {
   pBLEScan->setInterval(100);
   pBLEScan->setWindow(99);  // less or equal setInterval value
   BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
+  //Serial.print("Devices found: ");
+  //Serial.println(foundDevices.getCount());
+  //Serial.println("Scan done!");
   pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
   Serial.println("Restarting in 15 seconds!");
   delay(15000);
@@ -123,5 +143,6 @@ void setup() {
 }
 
 void loop() {
-  // This has been removed because there is no loop. One scan, then reboot.
+  // put your main code here, to run repeatedly:
+
 }
