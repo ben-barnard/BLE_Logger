@@ -11,6 +11,7 @@ There's a <a href="https://randomnerdtutorials.com/installing-the-esp32-board-in
 ## Required Libraries
 1. <a href="https://github.com/nhatuan84/esp32-micro-sdcard" target="_blank">esp32_nanosdcard</a> - You could probably use the standard library, but I like this one.
 2. <a href="https://github.com/adafruit/RTClib" target="_blank">RTClib</a> - You'll also need to set the time on your RTC module.
+
 Note: The Bluetooth libraries should already be installed by default if you followed the instructions on installing ESP32 for Arduino.
 
 ## Bill of Materials (Shop around, the links are just for reference)
