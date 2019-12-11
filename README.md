@@ -1,7 +1,7 @@
 # BLE_Logger
 An Offline BLE Beacon Proximity Logger
 
-Project developed to detect and log whether a wearable BLE beacon comes within range, for the purposes of research. Emphasis is on reliability, versatility, and being able to use inexpensive components. The code borrows heavily from various projects and stackoverflow posts. I am working on giving proper credit. 
+Project developed to detect and log whether a wearable BLE beacon comes within range, for research purposes. Emphasis is on reliability, versatility, and being able to use inexpensive components. The code borrows heavily from various projects and stackoverflow posts (links in sketch file).  
 
 Yes - I know - it would be much easier to use WiFi/LoRa/ESP-NOW and MQTT, but this application is intended for situations where you have mains power but no wireless options (beyond Bluetooth, of course). Not everything needs to be connected to the internet, especially if you're simply researching and don't need live data.
 
