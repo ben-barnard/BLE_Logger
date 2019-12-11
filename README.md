@@ -22,6 +22,9 @@ Note: The Bluetooth libraries should already be installed by default if you foll
 5. Bluetooth Beacons of your choice, I used <a href="https://www.aliexpress.com/item/32863939944.html?spm=a2g0s.9042311.0.0.27424c4ddpJpHT" target="_blank">these devices</a> $4/each
 6. If you'd like to have an external LED indicator, grab a resistor and LED from anywhere. 
 7. MicroSD cards. Don't worry about massive capacity. It would take a *long time* to fill a 16GB card with periodic readings. - $7 (if not on sale at Microcenter)
+8. A micro usb cable or microusb phone charger. The ESP32 dev board has a microusb plugin, so we'll just use that.
+9. An enclosure. You can easily <a href="https://www.thingiverse.com/thing:1264391" target="_blank">3D print one</a> or order some cheaply on Amazon. <a href="https://www.amazon.com/gp/product/B07WCKF6P4/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1" target="_blank">These fit well</a> even if you are connecting everything with jumper wires. 
+10. A way for to connect everything. If you want to keep things super simple, just using <a href="https://www.amazon.com/gp/product/B077N58HFK/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1" target="_blank">female jumper wires</a> is fine. $5
 
 ## Mapping
 
