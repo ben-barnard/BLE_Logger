@@ -21,16 +21,16 @@ Note: The Bluetooth libraries should already be installed by default if you foll
 2. <a href="https://www.amazon.com/SenMod-Adapter-Reader-Module-Arduino/dp/B01JYNEX56/ref=sr_1_5?crid=2K6RLKFNAKBL2" target="_blank">MicroSD Card Adapter</a> - $1
 3. <a href="https://www.amazon.com/HiLetgo-AT24C32-Arduino-Without-Battery/dp/B00LX3V7F0/ref=sr_1_3" target="_blank">RTC Module (ZS-042)</a> - $1
 4. <a href="https://www.amazon.com/Energizer-2032-Battery-CR2032-Lithium/dp/B0042A9UXC/" target="_blank">CR2032 Coin-cell batteries</a> $.50
-5. Bluetooth Beacons of your choice, I used <a href="https://www.aliexpress.com/item/32863939944.html?spm=a2g0s.9042311.0.0.27424c4ddpJpHT" target="_blank">these devices</a> $4/each
+5. Bluetooth Beacons of your choice, I used <a href="https://www.aliexpress.com/item/32863939944.html?spm=a2g0s.9042311.0.0.27424c4ddpJpHT" target="_blank">these devices</a> Important note - there appears to be a variant where the broadcasted RSSI is actually the battery level and *not the signal strength*. Don't get those. Signal strength is the value we need. $4/each
 6. If you'd like to have an external LED indicator, grab a resistor and LED from anywhere. 
 7. MicroSD cards. Don't worry about massive capacity. It would take a *long time* to fill a 16GB card with periodic readings. - $7 (if not on sale at Microcenter)
 8. A micro usb cable or microusb phone charger. The ESP32 dev board has a microusb plugin, so we'll just use that.
-9. An enclosure. You can easily <a href="https://www.thingiverse.com/thing:1264391" target="_blank">3D print one</a> or order some cheaply on Amazon. <a href="https://www.amazon.com/gp/product/B07WCKF6P4/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1" target="_blank">These fit well</a> even if you are connecting everything with jumper wires. 
+9. An enclosure. You can easily <a href="https://www.thingiverse.com/thing:1264391" target="_blank">3D print one</a> or order some cheaply on Amazon. <a href="https://www.amazon.com/gp/product/B07WCKF6P4/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1" target="_blank">These fit well</a> even if you are connecting everything with jumper wires. If you do connect everything with jumpers and cram it all into a box, be aware that you may end up inadvertently shorting the DS3231 and wiping the time. Protect the DS3231.
 10. A way for to connect everything. If you want to keep things super simple, just using <a href="https://www.amazon.com/gp/product/B077N58HFK/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1" target="_blank">female jumper wires</a> is fine. $5
 
 ## Mapping
 
-| ESP32 | DS331 |
+| ESP32 | DS3231 |
 |----------|----------|
 | 3V3 | VCC |
 | GND | GND |
