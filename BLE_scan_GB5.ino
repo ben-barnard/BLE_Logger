@@ -58,6 +58,7 @@ bool mac_Check(const char test_mac[]) {
 #include <BLEAdvertisedDevice.h>
 
 int scanTime = 5; //In seconds
+int time_between_scans = 60; //In seconds
 BLEScan* pBLEScan;
 
 /*
@@ -77,7 +78,9 @@ void setup() {
   root = SD.open("logging.csv", FILE_WRITE); 
   
   Serial.begin(115200);
-  Serial.println("Scanning...");
+  Serial.print("Scanning for ");
+  Serial.print(scanTime);
+  Serial.println(" seconds.");
 
   BLEDevice::init("");
   pBLEScan = BLEDevice::getScan(); //create new scan
@@ -148,8 +151,10 @@ delay(100);
 pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
 Serial.print(beaconCount);
 Serial.println(" beacons seen during last scan.");
-Serial.println("Waiting 15 seconds for restart and next scan.");
-delay(15000);
+Serial.print("Waiting ");
+Serial.print(time_between_scans);
+Serial.println(" seconds for restart and next scan.");
+delay((time_between_scans*1000));
 digitalWrite(ledPin, LOW);
 
 ESP.restart();
