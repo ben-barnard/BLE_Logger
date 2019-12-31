@@ -5,7 +5,7 @@ Project developed to detect and log whether a wearable BLE beacon comes within r
 
 The idea is that you build some of these devices (one for each area you wish to track), power them on, and they just continually scan for the BLE devices you specify in the sketch. When the scanner sees a beacon that it's been told to look for, it creates a new line of the log file with that detail (which scanner, which beacon, what time). It's mostly trivial to then combine these data and come up with a story on what beacon was where and when. 
 
-Yes - I know - it would be much easier to use WiFi/LoRa/ESP-NOW and MQTT, but this application is intended for situations where you have mains power but no wireless options (beyond Bluetooth, of course). Not everything needs to be connected to the internet, especially if you're simply researching and don't need live data.
+Yes - I know - it would be **much** easier to use WiFi/LoRa/ESP-NOW and MQTT, but this application is intended for situations where you have mains power but no wireless options (beyond Bluetooth, of course). Not everything needs to be connected to the internet, especially if you're simply researching and don't need live data.
 
 ## Install ESP32 for Arduino
 There's a <a href="https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/" target="_blank">good tutorial</a> to do this by randomnerdtutorials. If you follow my BOM, you will want to select the model "DOIT ESP32 DEVKIT V1".
@@ -13,6 +13,7 @@ There's a <a href="https://randomnerdtutorials.com/installing-the-esp32-board-in
 ## Required Libraries
 1. <a href="https://github.com/nhatuan84/esp32-micro-sdcard" target="_blank">esp32_nanosdcard</a> - You could probably use the standard library, but I like this one.
 2. <a href="https://github.com/adafruit/RTClib" target="_blank">RTClib</a> - You'll also need to set the time on your RTC module.
+3. <a href="https://arduinojson.org/" target="_blank">ArduinoJson</a> 
 
 Note: The Bluetooth libraries should already be installed by default if you followed the instructions on installing ESP32 for Arduino.
 
@@ -52,11 +53,11 @@ LED is setup for Pin 16.
 In the Arduino IDE, go to the scan sketch by: File -> Examples -> (Header) Examples for DOIT ESP32 DEVKIT V1 -> ESP 32 BLE Arduino -> BLE_scan . Compile and upload this sketch, and confirm that you are seeing successful scans in the serial screen. Now, go through your BLE devices, one at a time, and power them on, copy the MAC value, and save it somewhere. Shut that device off, and move onto the next one. You can enter these values in the sketch.
 
 ## Todo
-1. The log file should be dynamic by default, preferably using the unique ssid_retrieve() value.
+1. ~~The log file should be dynamic by default, preferably using the unique ssid_retrieve() value.~~ done
 2. Set up a JSON configuration file to:
-    - load the BLE MACs we're interested in
+    - load the BLE MACs we're interested in (**high priority, this is a pain**)
     - allow for a custom log file name
     - allow for a custom scan interval
 3. Post completed gerber file for easy setup. 
 4. Change the pin of the indicator LED to a PWM pin so that we can use multi-color LEDs
-5. Consider code changes to reduce wear on MicroSD cards
+5. ~~Consider code changes to reduce wear on MicroSD cards~~ done - the current version loads all currently seen beacons to a buffer to write once, not the old version where there was a separate write for each. 
