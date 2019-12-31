@@ -38,7 +38,7 @@ Note: The Bluetooth libraries should already be installed by default if you foll
 | D22 | SCL |
 | D21 | SDA |
 
-| ESP32 | MicroSD |
+| ESP32 | MicroSD Module |
 |----------|----------|
 | VIN | VCC |
 | GND | GND |
@@ -54,10 +54,11 @@ In the Arduino IDE, go to the scan sketch by: File -> Examples -> (Header) Examp
 
 ## Todo
 1. ~~The log file should be dynamic by default, preferably using the unique ssid_retrieve() value.~~ done
-2. Set up a JSON configuration file to:
+2. Set up a JSON configuration file (saved to MicroSD) to:
     - load the BLE MACs we're interested in (**high priority, this is a pain**)
     - allow for a custom log file name
     - allow for a custom scan interval
-3. Post completed gerber file for easy setup. 
+3. Post completed gerber file for easy setup. *Update* - I  did print PCBs for this project but they are ugly and have mistakes, so I will wait until version 2 before posting it. 
 4. Change the pin of the indicator LED to a PWM pin so that we can use multi-color LEDs
 5. ~~Consider code changes to reduce wear on MicroSD cards~~ done - the current version loads all currently seen beacons to a buffer to write once, not the old version where there was a separate write for each. 
+6. Add the instructions for the wearable beacons - they need their signal strength to be consistent, and we can't be sure that is the case upon arrival. Also, changing their name is useful, so you see "BEACON1" in your scanner as opposed to "RDL5XXXX".
