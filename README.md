@@ -62,5 +62,8 @@ In the Arduino IDE, go to the scan sketch by: File -> Examples -> (Header) Examp
 4. Change the pin of the indicator LED to a PWM pin so that we can use multi-color LEDs
 5. ~~Consider code changes to reduce wear on MicroSD cards~~ done - the current version loads all currently seen beacons to a buffer to write once, not the old version where there was a separate write for each. 
 6. Add the instructions for the wearable beacons - they need their signal strength to be consistent, and we can't be sure that is the case upon arrival. Also, changing their name is useful, so you see "BEACON1" in your scanner as opposed to "RDL5XXXX".
-7. I'd like to write a helper Python or PowerShell script that can take the combined readings ~~and apply some algorithms to get create approximate enter/exit times and~~ generate some sort of visual schedule. It would instead be more appropriate to handle the strikethrough section on the ESP32. I'm thinking of keeping an SQLite db to access first`_seen and last`_seen
+7. Only write the durations of the beacons being in proximity, not the minute-by-minute "I'm here!"
 8. Need to add instructions on how to use an ESP32 or ESP8266 to put the correct time on the DS3231 module (TimeNTP_ESP8266WiFi.ino). 
+9. Get rid of *constant* ESP reboot - retain the details of what the current conditions are in memory OR save them to JSON and store on the file. The important time variables are "first_seen" and "last_seen". 
+10. Set a DS3231 alarm for 2AM (configurable, obviously) where we do have one daily reboot.
+11. Try to use the ESP32 dev boards in the D1 Mini footprint instead - there is a D1 mini data logger board that we could use and make these devices incredibly small with no PCB needed!
