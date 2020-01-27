@@ -34,7 +34,7 @@ ForEach($file in $files)
             #All the records pertaining to the first beacon, in the first room.
             $beacon_log = $room_log | where-object {$_.beacon_name -like $beacon } | sort-object  { $_."timestamp" -as [datetime] }
 
-            $check_in_count = 1; #We're setting the increment value to 1 because if we've gotten this far, 1 must exist. 
+            $check_in_count = 1; #We're setting the increment value to 1 because if we've gotten this far, at least 1 must exist. 
             ForEach($log_item in $beacon_log)
             {
             #Loading the next line for evaluation
