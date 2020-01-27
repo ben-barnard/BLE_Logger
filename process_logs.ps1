@@ -1,5 +1,13 @@
+<#
+TITLE: process_logs.ps1
+AUTHOR: Ben Barnard
+DESCRIPTION: This is an incredibly lazy and inefficient PowerShell script to turn the BLE_Logger log files into durations.
+#>
+
 #This is where you put the sensor collection files (CSVs)
 $project_files_directory = "C:\Users\Documents\SensorFiles\"
+
+#This is where you want to put the results
 $results_file = "C:\Users\Documents\results.csv"
 
 
