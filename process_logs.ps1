@@ -55,11 +55,8 @@ ForEach($file in $files)
                 #If the time elapsed since the last check-in exceeds 4 minutes, we're calling it a duration and wrapping things up.
                 IF(($minutes_difference -gt 4))
                     {
-                    # write to file
+                    #Package the object to be saved into $duration_result
                     $duration_minutes_difference = $last_check - $start_duration
-                    #Write-Color -Color Green "FOUND ONE ($minutes_difference) - $room $beacon $start_duration $last_check, current_check was $current_check"
-                    #write-host $beacon $minutes_difference ", `$start_duration" $start_duration $last_check $current_check
-                    #log_to_file $room $beacon $start_duration $current_check $minutes_difference
                     $duration_result = New-Object PSObject
                     $duration_result | Add-Member -type NoteProperty -name room -Value $room
                     $duration_result | Add-Member -type NoteProperty -name beacon -Value $beacon
@@ -70,7 +67,7 @@ ForEach($file in $files)
                     $duration_result | Add-Member -type NoteProperty -name duration_minutes_difference -Value $duration_minutes_difference
                     $duration_result | Add-Member -type NoteProperty -name check_in_count -Value $check_in_count
                     
-                    #This is where we write the result to the CSV
+                    #This is where we actually write the result to the CSV
                     #We **may** want to include an IF to only write back if $check_in_count > 2, otherwise we have to do it in post
                     $duration_result| Export-Csv -Path $results_file -NoTypeInformation -Append
                     $start_duration = $current_check
