@@ -1,7 +1,10 @@
 <#
 TITLE: process_logs.ps1
 AUTHOR: Ben Barnard
-DESCRIPTION: This is an incredibly lazy and inefficient PowerShell script to turn the BLE_Logger log files into durations.
+DESCRIPTION: 
+This is an incredibly lazy and inefficient PowerShell script to turn the BLE_Logger log files into defined durations.
+Yes, it would be better to have the Arduino sketch manage the "enter" and "exit" events and log the durations directly.
+For now, this will have to work. I wrote this in PowerShell initially because my end-users do not have access to Python.    
 #>
 
 #This is where you put the sensor collection files (CSVs)
@@ -10,12 +13,9 @@ $project_files_directory = "C:\Users\Documents\SensorFiles\"
 #This is where you want to put the results
 $results_file = "C:\Users\Documents\results.csv"
 
-
 $files = get-childitem -Filter *.csv $project_files_directory
 ForEach($file in $files)
     {
-    $start_of_duration = $null
-    $last_seen = $null
     $current_file = $file.FULLname
     $report = import-csv $current_file -Header sensor, beacon_name, beacon_uuid, rssi, timestamp
     $all_rooms = ($report | select sensor | sort-object -Property sensor -Unique).sensor 
